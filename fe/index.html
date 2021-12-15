@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0,maximum-scale=1.0, minimum-scale=1,user-scalable=no, viewport-fit=cover"
+    />
+    <title>Sentry前端告警</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ant-design-vue/1.7.8/antd.min.css" integrity="sha512-jWSyUVZdQTCPRAe9N3sp9kxGCkhKr5a0FjMse3WASy6SP2Hbez2wH2IhOdpN231YFzeVhz93JdSrts2772N4NQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      [v-cloak] {
+        display: none;
+      }
+
+      .page {
+        width: 800px;
+        padding: 50px 24px;
+        margin: 0 auto;
+      }
+
+      .canvas {
+        width: 800px;
+        height: 400px;
+      }
+
+      .project + .project {
+        margin-top: 32px;
+      }
+
+      .project-title {
+        text-align: center;
+        font-size: 24px;
+        color: #262626;
+        margin-bottom: 12px;
+        color: #198FFF;
+        cursor: pointer;
+      }
+
+      .declarations {
+        padding: 12px;
+        border-left: 3px solid red;
+        background-color: #fff7f7;
+      }
+
+      .declaration-title {
+        font-size: 16px;
+        color: #333;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app" class="page" v-cloak>
+      Test
+    </div>
+    <!-- 辅助提示 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.14/vue.min.js" integrity="sha512-XdUZ5nrNkVySQBnnM5vzDqHai823Spoq1W3pJoQwomQja+o4Nw0Ew1ppxo5bhF2vMug6sfibhKWcNJsG8Vj9tg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js" integrity="sha512-u9akINsQsAkG9xjc1cnGF4zw5TFDwkxuc9vUp5dltDWYCSmyd0meygbvgXrlc/z7/o4a19Fb5V0OUE58J7dcyw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+      // axios.defaults.headers.common['t'] = Date.now();
+      // axios.defaults.headers.common['Content-Type'] = 'application/json';
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          team: 'channel-technology',
+          projects: []
+        },
+        async mounted() {
+          const { data } = await axios({
+            url: 'http://api.live.cc',
+            method: 'GET',
+            params: {
+              ai: 1
+            },
+            // headers: {
+            //   sign: '123'
+            // }
+          });
+          console.log('data', data);
+        },
+      });
+    </script>
+  </body>
+</html>
